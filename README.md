@@ -28,7 +28,7 @@ Currently, I am building polished web interfaces at **[SCALATER](https://github.
 
 ---
 
-![Metrics](github-metrics.svg)
+![GitHub Metrics](github-metrics.svg)
 
 ---
 
