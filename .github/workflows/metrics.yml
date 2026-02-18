@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
   push: {branches: ["main"]}
 
+concurrency:
+  group: metrics
+  cancel-in-progress: true
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -14,10 +18,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - uses: lowlighter/metrics@master
         with:
-          # Your GitHub token
+          # GitHub
           token: ${{ secrets.METRICS_TOKEN }}
+          committer_branch: assets
+          committer_message: "build: update metrics report"
+          filename: metrics.svg
 
           # Options
           user: edisoft00
@@ -25,8 +32,6 @@ jobs:
           config_timezone: America/Chicago
           base: header, activity, community, repositories
           repositories_affiliations: owner, collaborator
-          committer_branch: assets
-          filename: metrics.svg
 
           # Calendar
           plugin_isocalendar: yes
